@@ -24,7 +24,7 @@ services:
     image: cinema_app:latest
     # Port forwarding to access the Spring Boot application.
     ports:
-      - 8090:8080
+      - 8100:8080
     # Dependency on the PostgreSQL container.
     depends_on:
       - postgres

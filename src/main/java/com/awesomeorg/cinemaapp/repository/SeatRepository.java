@@ -1,5 +1,6 @@
 package com.awesomeorg.cinemaapp.repository;
 
+import com.awesomeorg.cinemaapp.entity.Seat;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

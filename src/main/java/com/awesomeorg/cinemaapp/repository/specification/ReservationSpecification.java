@@ -1,5 +1,7 @@
 package com.awesomeorg.cinemaapp.repository.specification;
 
+import com.awesomeorg.cinemaapp.entity.Reservation;
+import com.awesomeorg.cinemaapp.protocol.ReservationQuery;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.data.jpa.domain.Specification;

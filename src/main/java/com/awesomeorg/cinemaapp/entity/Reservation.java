@@ -13,6 +13,7 @@ import java.util.List;
 @Entity(name = "reservations")
 @NoArgsConstructor
 public class Reservation {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // Unique identifier for the reservation.

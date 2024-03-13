@@ -1,5 +1,8 @@
 package com.awesomeorg.cinemaapp.controller;
 
+import com.awesomeorg.cinemaapp.entity.Seat;
+import com.awesomeorg.cinemaapp.protocol.SeatOccupancyRequest;
+import com.awesomeorg.cinemaapp.service.SeatService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

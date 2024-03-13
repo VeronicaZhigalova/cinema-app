@@ -1,5 +1,19 @@
 package com.awesomeorg.cinemaapp.service;
 
+import com.awesomeorg.cinemaapp.entity.Client;
+import com.awesomeorg.cinemaapp.entity.Seat;
+import com.awesomeorg.cinemaapp.entity.Ticket;
+import com.awesomeorg.cinemaapp.exceptions.TicketAvailabilityExceededException;
+import com.awesomeorg.cinemaapp.exceptions.TicketNotFoundException;
+import com.awesomeorg.cinemaapp.protocol.CreateClientRequest;
+import com.awesomeorg.cinemaapp.protocol.SeatOccupancyRequest;
+import com.awesomeorg.cinemaapp.protocol.TicketQuery;
+import com.awesomeorg.cinemaapp.protocol.UpdateTicketRequest;
+import com.awesomeorg.cinemaapp.repository.ClientRepository;
+import com.awesomeorg.cinemaapp.repository.SeatRepository;
+import com.awesomeorg.cinemaapp.repository.ShowtimeRepository;
+import com.awesomeorg.cinemaapp.repository.TicketRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -17,11 +31,10 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class TicketService {
 
-    private final ShowtimeRepository showtimeRepository;
     private final TicketRepository ticketRepository;
     private final ClientRepository clientRepository;
     private final SeatRepository seatRepository;
-    private final ShowtimeService showtimeService;
+
 
     // Finding free tickets
     public Page<Ticket> findFreeTicket(TicketQuery query, PageRequest pageRequest) {
@@ -82,26 +95,24 @@ public class TicketService {
         return Math.max(totalSeatsLimit - existingTicketsCount, 0);
     }
 
-//    // Getting a seat from the request
-//    private Seat getSeatFromRequest(Long seatId) {
-//        return seatRepository.findById(seatId)
-//                .orElseThrow(() -> new EntityNotFoundException("Seat not found with ID: " + seatId));
-//    }
+    // Getting a seat from the request
+    private Seat getSeatFromRequest(Long seatId) {
+        return seatRepository.findById(seatId)
+                .orElseThrow(() -> new EntityNotFoundException("Seat not found with ID: " + seatId));
+    }
 
-//    // Getting a client from the TicketQuery
-//    private Client getClientFromRequest(TicketQuery ticketQuery) {
-//        Long clientId = ticketQuery.getClientId();
-//
-//        if (clientId != null) {
-//            return clientRepository.findById(clientId)
-//                    .orElseThrow(() -> new EntityNotFoundException("Client not found with ID: " + clientId));
-//        } else {
-//            // Depending on your requirements, you might want to handle the case when clientId is null
-//            throw new IllegalArgumentException("ClientId is required to create a ticket");
-//        }
-//
-//    }
+    // Getting a client from the TicketQuery
+    private Client getClientFromRequest(TicketQuery ticketQuery) {
+        Long clientId = ticketQuery.getClientId();
 
+        if (clientId != null) {
+            return clientRepository.findById(clientId)
+                    .orElseThrow(() -> new EntityNotFoundException("Client not found with ID: " + clientId));
+        } else {
+            throw new IllegalArgumentException("ClientId is required to create a ticket");
+        }
+
+    }
 
 
     public boolean existsById(Long ticketId) {
@@ -140,30 +151,30 @@ public class TicketService {
         ticketRepository.deleteById(ticketId);
     }
 
-//    // Getting a client from the CreateClientRequest
-//    private Client getClientFromRequest(CreateClientRequest request) {
-//        String clientName = request.getClientName();
-//        String phoneNumber = request.getPhoneNumber();
-//        String emailAddress = request.getEmailAddress();
-//
-//        // Checking for at least one client parameter
-//        if (clientName != null || phoneNumber != null || emailAddress != null) {
-//            // Creating a new client or using an existing one
-//            return Optional.ofNullable(request.getClientName())
-//                    .map(clientId -> clientRepository.findById(Long.valueOf(clientId))
-//                            .orElseGet(() -> new Client(clientName, phoneNumber, emailAddress)))
-//                    .orElseGet(() -> new Client(clientName, phoneNumber, emailAddress));
-//        } else {
-//            // If client data is absent, return null or throw an exception
-//            return null; // Or choose appropriate logic
-//        }
-//    }
-//
-//    // Getting a seat from the request
-//    private Seat getSeatFromRequest(SeatOccupancyRequest request) {
-//        return Optional.ofNullable(request.getNumber())
-//                .map(number -> seatRepository.save(new Seat(request.getRow(), number)))
-//                .orElse(null); // or choose appropriate logic if number is null
-//    }
+    // Getting a client from the CreateClientRequest
+    private Client getClientFromRequest(CreateClientRequest request) {
+        String clientName = request.getClientName();
+        String phoneNumber = request.getPhoneNumber();
+        String emailAddress = request.getEmailAddress();
+
+        // Checking for at least one client parameter
+        if (clientName != null || phoneNumber != null || emailAddress != null) {
+            // Creating a new client or using an existing one
+            return Optional.ofNullable(request.getClientName())
+                    .map(clientId -> clientRepository.findById(Long.valueOf(clientId))
+                            .orElseGet(() -> new Client(clientName, phoneNumber, emailAddress)))
+                    .orElseGet(() -> new Client(clientName, phoneNumber, emailAddress));
+        } else {
+            // If client data is absent, return null or throw an exception
+            return null;
+        }
+    }
+
+    // Getting a seat from the request
+    private Seat getSeatFromRequest(SeatOccupancyRequest request) {
+        return Optional.ofNullable(request.getNumber())
+                .map(number -> seatRepository.save(new Seat(request.getRow(), number)))
+                .orElse(null);
+    }
 }
 

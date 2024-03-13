@@ -4,8 +4,11 @@ import lombok.Data;
 
 @Data
 public class UpdateClientRequest {
+
     private String clientName;
+
     private String phoneNumber;
+
     private String emailAddress;
 
 

@@ -1,5 +1,6 @@
 package com.awesomeorg.cinemaapp.protocol;
 
+import com.awesomeorg.cinemaapp.entity.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -9,11 +10,17 @@ import java.util.List;
 
 @Data
 public class ReservationQuery {
+
     private Showtime showtime;
+
     private Client client;
+
     private Seat seat;
+
     private Ticket ticket;
+
     private List<Ticket> tickets;
+
     private Reservation.BookingStatus bookingStatus;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")

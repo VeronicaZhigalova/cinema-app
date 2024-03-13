@@ -1,5 +1,7 @@
 package com.awesomeorg.cinemaapp.protocol;
 
+import com.awesomeorg.cinemaapp.entity.Movie;
+import com.awesomeorg.cinemaapp.entity.Reservation;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -9,9 +11,13 @@ import java.util.List;
 
 @Data
 public class SeatOccupancyRequest {
+
     private Integer row;
+
     private Integer number;
+
     private Integer tickets;
+
     private List<Reservation> reservations;
 
     @ManyToOne

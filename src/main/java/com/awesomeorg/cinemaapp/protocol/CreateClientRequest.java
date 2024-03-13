@@ -4,8 +4,11 @@ import lombok.Data;
 
 @Data
 public class CreateClientRequest {
+
     private String clientName;
+
     private String phoneNumber;
+
     private String emailAddress;
 
     public CreateClientRequest(String clientName, String phoneNumber, String emailAddress) {

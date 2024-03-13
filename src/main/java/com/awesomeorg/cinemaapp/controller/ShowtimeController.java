@@ -1,5 +1,13 @@
 package com.awesomeorg.cinemaapp.controller;
 
+import com.awesomeorg.cinemaapp.entity.Movie;
+import com.awesomeorg.cinemaapp.entity.Seat;
+import com.awesomeorg.cinemaapp.entity.Showtime;
+import com.awesomeorg.cinemaapp.entity.Ticket;
+import com.awesomeorg.cinemaapp.protocol.TicketQuery;
+import com.awesomeorg.cinemaapp.protocol.UpdateTicketRequest;
+import com.awesomeorg.cinemaapp.service.ShowtimeService;
+import com.awesomeorg.cinemaapp.service.TicketService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -42,6 +50,7 @@ public class ShowtimeController {
             return ResponseEntity.badRequest().build();
         }
     }
+
     // Update ticket information by ID
     // Update ticket information and return the updated ticket or an error if the ticket is not found
     @PutMapping("/update/{ticketId}")

@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:tc:postgresql:16:///cinema_db-test
+    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
+    username: cinema
+    password: password
+  flyway:
+    url: jdbc:tc:postgresql:16:///cinema_db-test
+    locations: classpath:/db/tables, classpath:/db/test-data
+    cleanDisabled: false
+
+#This Spring configuration block is intended for setting up a test database using TestContainers, a tool that provides an isolated database environment for running tests.
+#
+#DataSource:
+#
+#url: jdbc:tc:postgresql:16:///cinema_db-test defines the URL for a temporary PostgreSQL test database using TestContainers.
+#driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver specifies the database driver for TestContainers.
+#username: cinema and password: password set the credentials for accessing the test database.
+#Flyway:
+#
+#url: jdbc:tc:postgresql:16:///cinema_db-test sets the URL for the temporary test database in Flyway.
+#locations: classpath:/db/tables, classpath:/db/test-data specifies the locations of migrations for creating tables and loading test data.
+#cleanDisabled: false allows automatic database cleanup before applying migrations, which is beneficial for running tests.
