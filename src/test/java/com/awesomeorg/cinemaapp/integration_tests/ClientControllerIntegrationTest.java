@@ -68,7 +68,7 @@ public class ClientControllerIntegrationTest extends AbstractIntegrationTest {
         Long clientId = 1L;
 
         mockMvc.perform(MockMvcRequestBuilders.delete("/clients/delete/{clientId}", clientId))
-                .andExpect(MockMvcResultMatchers.status().isOk()) // Update to .isOk() instead of .isNoContent()
+                .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().string("Client deleted successfully"));
     }
 
@@ -82,7 +82,6 @@ public class ClientControllerIntegrationTest extends AbstractIntegrationTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/clients/history/{clientId}", clientId))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
-                // Update expectations based on the actual behavior
                 .andExpect(MockMvcResultMatchers.jsonPath("$").isArray())
                 .andExpect(MockMvcResultMatchers.jsonPath("$").isEmpty());
     }
