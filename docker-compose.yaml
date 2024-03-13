@@ -1,0 +1,37 @@
+# Defining services used in Docker Compose.
+services:
+  postgres:
+    # Naming the PostgreSQL container.
+    container_name: cinema_db
+    # PostgreSQL image.
+    image: 'postgres:latest'
+    # Environment variables for configuring PostgreSQL.
+    environment:
+      POSTGRES_DB: cinema_db
+      POSTGRES_USER: cinema_user
+      POSTGRES_PASSWORD: cinema_pw
+    # Port forwarding to access the database.
+    ports:
+      - 5432:5432
+    # Creating a volume to persist PostgreSQL data outside the container.
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    # Naming the Spring Boot application container.
+    container_name: cinema_app
+    # Spring Boot application image.
+    image: cinema_app:latest
+    # Port forwarding to access the Spring Boot application.
+    ports:
+      - 8090:8080
+    # Dependency on the PostgreSQL container.
+    depends_on:
+      - postgres
+    # Environment variables for configuring the connection to the database in Spring Boot.
+    environment:
+      - spring.datasource.url=jdbc:postgresql://postgres:5432/cinema_db
+      - spring.datasource.initialization-mode=always
+# Defining volumes to persist data between container restarts.
+volumes:
+  postgres_data:
