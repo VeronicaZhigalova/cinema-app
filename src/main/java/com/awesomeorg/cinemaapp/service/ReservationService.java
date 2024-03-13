@@ -1,5 +1,9 @@
 package com.awesomeorg.cinemaapp.service;
 
+import com.awesomeorg.cinemaapp.entity.*;
+import com.awesomeorg.cinemaapp.protocol.CreateReservationRequest;
+import com.awesomeorg.cinemaapp.protocol.UpdateReservationRequest;
+import com.awesomeorg.cinemaapp.repository.*;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -69,7 +73,7 @@ public class ReservationService {
                 .collect(Collectors.toList());
     }
 
-    // Updating reservation information
+
     // Updating reservation information
     public Reservation updateReservation(Long reservationId, UpdateReservationRequest request, Long clientId) {
         // Checking if the reservation exists

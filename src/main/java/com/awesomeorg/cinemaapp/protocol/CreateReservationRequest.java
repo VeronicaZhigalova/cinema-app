@@ -1,5 +1,6 @@
 package com.awesomeorg.cinemaapp.protocol;
 
+import com.awesomeorg.cinemaapp.entity.Reservation;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -8,6 +9,7 @@ import java.time.LocalDateTime;
 
 @Data
 public class CreateReservationRequest {
+
     @NotNull
     private Long showtimeId;
 

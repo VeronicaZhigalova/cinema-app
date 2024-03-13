@@ -1,5 +1,11 @@
 package com.awesomeorg.cinemaapp.controller;
 
+import com.awesomeorg.cinemaapp.entity.Movie;
+import com.awesomeorg.cinemaapp.entity.Reservation;
+import com.awesomeorg.cinemaapp.entity.Showtime;
+import com.awesomeorg.cinemaapp.protocol.CreateReservationRequest;
+import com.awesomeorg.cinemaapp.protocol.UpdateReservationRequest;
+import com.awesomeorg.cinemaapp.service.ReservationService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

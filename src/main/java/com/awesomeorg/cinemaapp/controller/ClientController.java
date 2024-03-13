@@ -2,6 +2,9 @@ package com.awesomeorg.cinemaapp.controller;
 
 import com.awesomeorg.cinemaapp.entity.Client;
 import com.awesomeorg.cinemaapp.entity.Reservation;
+import com.awesomeorg.cinemaapp.protocol.CreateClientRequest;
+import com.awesomeorg.cinemaapp.protocol.UpdateClientRequest;
+import com.awesomeorg.cinemaapp.service.ClientService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

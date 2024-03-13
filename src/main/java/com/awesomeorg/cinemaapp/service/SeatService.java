@@ -1,5 +1,9 @@
 package com.awesomeorg.cinemaapp.service;
 
+import com.awesomeorg.cinemaapp.entity.Movie;
+import com.awesomeorg.cinemaapp.entity.Seat;
+import com.awesomeorg.cinemaapp.protocol.SeatOccupancyRequest;
+import com.awesomeorg.cinemaapp.repository.SeatRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -13,6 +17,7 @@ import java.util.List;
 public class SeatService {
 
     private final SeatRepository seatRepository;
+
     // Getting recommended seats
     public List<Seat> getRecommendedSeats(Long movieId, Integer numberOfTickets) {
         List<Seat> freeSeats = seatRepository.findFreeSeatsByMovieId(movieId, PageRequest.of(0, numberOfTickets));
@@ -25,7 +30,7 @@ public class SeatService {
 
         for (Seat freeSeat : freeSeats) {
             Seat occupiedSeat = new Seat(freeSeat.getRow(), freeSeat.getNumber());
-            occupiedSeat.setMovie(new Movie(movieId)); // Associate the seat with the movie
+            occupiedSeat.setMovie(new Movie(movieId));
             occupiedSeat.setOccupied(true);
             occupiedSeats.add(occupiedSeat);
         }

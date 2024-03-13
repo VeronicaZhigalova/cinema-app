@@ -11,6 +11,7 @@ import java.util.List;
 @Entity(name = "seats")
 @NoArgsConstructor
 public class Seat {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // Unique identifier for the seat.
@@ -38,7 +39,7 @@ public class Seat {
         this.occupied = false;
     }
 
-//    public Seat(int i, int i1, boolean b) {
-//    }
+    public Seat(int i, int i1, boolean b) {
+    }
 }
 

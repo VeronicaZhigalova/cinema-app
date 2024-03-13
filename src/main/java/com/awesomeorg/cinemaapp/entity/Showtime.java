@@ -16,7 +16,7 @@ public class Showtime {
     private Long id; // Unique identifier for the showtime.
 
     @Column(name = "language")
-    private String language;
+    private String language; // Language.
 
     @JsonManagedReference
     @ManyToOne
@@ -33,8 +33,8 @@ public class Showtime {
     @OneToMany(mappedBy = "showtime", cascade = CascadeType.ALL)
     private List<Reservation> reservations; // List of reservations associated with the showtime.
 
-    @Column(name = "showtimeDateTime") // Specify the column name for showtimeDateTime
-    private String showtimeDateTime;
+    @Column(name = "showtimeDateTime")
+    private String showtimeDateTime; // Showtime date.
 
     public Showtime(Movie movie) {
         this.movie = movie;

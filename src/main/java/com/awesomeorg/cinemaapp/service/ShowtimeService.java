@@ -1,5 +1,10 @@
 package com.awesomeorg.cinemaapp.service;
 
+import com.awesomeorg.cinemaapp.entity.Movie;
+import com.awesomeorg.cinemaapp.entity.Seat;
+import com.awesomeorg.cinemaapp.entity.Showtime;
+import com.awesomeorg.cinemaapp.repository.ShowtimeRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +19,6 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ShowtimeService {
 
-    private final TicketRepository ticketRepository;
     private final ShowtimeRepository showtimeRepository;
     private final SeatService seatService;
 
@@ -57,11 +61,11 @@ public class ShowtimeService {
         return seatService.getRecommendedSeats(showtimeId, numOfTickets);
     }
 
-//    // Finding a showtime by ID
-//    public Showtime findShowtimeById(Long id) {
-//        return showtimeRepository.findById(id)
-//                .orElseThrow(() -> new EntityNotFoundException("Showtime not found with ID: " + id));
-//    }
+    // Finding a showtime by ID
+    public Showtime findShowtimeById(Long id) {
+        return showtimeRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Showtime not found with ID: " + id));
+    }
 
 }
 

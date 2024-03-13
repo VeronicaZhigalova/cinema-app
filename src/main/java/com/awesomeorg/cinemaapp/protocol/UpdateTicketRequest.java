@@ -1,5 +1,6 @@
 package com.awesomeorg.cinemaapp.protocol;
 
+import com.awesomeorg.cinemaapp.entity.Ticket;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 
 @Data
 public class UpdateTicketRequest {
+
     @NotNull
     private Long showtimeId;
 

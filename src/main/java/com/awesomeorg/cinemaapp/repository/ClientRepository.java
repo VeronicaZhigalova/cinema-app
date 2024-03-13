@@ -1,5 +1,8 @@
 package com.awesomeorg.cinemaapp.repository;
 
+import com.awesomeorg.cinemaapp.entity.Client;
+import com.awesomeorg.cinemaapp.entity.Reservation;
+import com.awesomeorg.cinemaapp.entity.Ticket;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @Entity(name = "tickets")
 @NoArgsConstructor
 public class Ticket {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // Unique identifier for the ticket.

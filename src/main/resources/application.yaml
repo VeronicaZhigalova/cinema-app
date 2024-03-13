@@ -10,9 +10,27 @@ spring:
     properties:
       hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
       hibernate.jdbc.time_zone: UTC
-    open-in-view: false  # Важная настройка, чтобы избежать проблемы с OpenEntityManagerInView
+    open-in-view: false
   flyway:
     baseline-on-migrate: true
   application:
     name: cinema
 
+  # This Spring configuration block defines database settings and utilizes various tools for database management:
+  #
+  #DataSource:
+  #
+  #Parameters for connecting to the PostgreSQL database are defined (url, username, password).
+  #JPA (Java Persistence API):
+  #
+  #hibernate.ddl-auto: update instructs Hibernate to automatically update the database schema when entity changes are detected in the code.
+  #show-sql: true enables the display of SQL queries in logs.
+  #hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect sets the PostgreSQL dialect for Hibernate.
+  #hibernate.jdbc.time_zone: UTC sets the time zone for the JDBC connection.
+  #Flyway:
+  #
+  #baseline-on-migrate: true instructs Flyway to create a baseline migration if it is absent.
+  #Application:
+  #
+  #name: cinema sets the Spring application name to "cinema."
+  #These configurations ensure integration with the PostgreSQL database, manage migrations through Flyway, and configure JPA/Hibernate to interact with data in the Spring application using the specified parameters.
